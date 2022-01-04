@@ -1,1 +1,1 @@
-# msc_thesis
+# Master's Thesis Code
