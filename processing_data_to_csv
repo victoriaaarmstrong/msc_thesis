@@ -1,0 +1,74 @@
+import processing.serial.*;
+
+Serial port;    // Create an object from Serial class
+String val;     // Data received from the serial port
+Table table; // Table to store the data in before exporting to CSV
+int counter = 1; //To count how long we go for
+int num; //How many want
+
+void setup() {
+  port = new Serial(this, "/dev/ttyACM0", 115200); //make sure this matches what is being displayed under tools -> port in the arduino ide, changes sometimes
+  
+  table = new Table();
+  table.addColumn("id");
+  table.addColumn("year");
+  table.addColumn("month");
+  table.addColumn("day");
+  table.addColumn("hour");
+  table.addColumn("minute");
+  table.addColumn("second");
+  table.addColumn("ir");
+  table.addColumn("bpm");
+  table.addColumn("pump_on");
+  table.addColumn("vacuum_on");
+  table.addColumn("temp");
+  table.addColumn("x");
+  table.addColumn("y");
+  table.addColumn("z");
+  
+  num = 12000;
+  println("starting...");
+}
+
+void draw() {
+  
+  if ( port.available() > 0)
+  { // If data is available,
+    val = port.readStringUntil('\n');
+    val = trim(val); 
+    float sensorVals[] = float(split(val, ',')); 
+    
+    TableRow newRow = table.addRow();
+    newRow.setInt("id", table.lastRowIndex());
+    newRow.setInt("year", year());
+    newRow.setInt("month", month());
+    newRow.setInt("day", day());
+    newRow.setInt("hour", hour());
+    newRow.setInt("minute", minute());
+    newRow.setInt("second", second());
+    newRow.setFloat("ir", sensorVals[0]);
+    newRow.setFloat("bpm", sensorVals[1]);
+    newRow.setFloat("pump_on", sensorVals[2]);
+    newRow.setFloat("vacuum_on", sensorVals[3]);
+    newRow.setFloat("temp", sensorVals[4]);
+    newRow.setFloat("x", sensorVals[5]);
+    newRow.setFloat("y", sensorVals[6]);
+    newRow.setFloat("z", sensorVals[7]);
+    
+   if (counter % 100 == 0){
+    //put a good naming convention on it
+      String index = String.valueOf(counter);
+      String file_location = "/home/victoriaarmstrong/Desktop/data_testing/victoria1" + index + ".csv";
+      saveTable(table, file_location); 
+      println("checkpoint saved");
+      table.clearRows();
+    }
+    
+    if (counter == num) {
+      println("record complete");
+      exit();
+    }
+    
+    counter++;
+  } 
+}
