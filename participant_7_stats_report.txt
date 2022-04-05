@@ -1,0 +1,58 @@
+Number Nan - Continuous Columns
+bvp     0
+bpm     0
+temp    0
+x       0
+y       0
+z       0
+Descriptive Stats - Continuous Columns
+                 bvp           bpm          temp             x             y             z
+count   10800.000000  10800.000000  10800.000000  10800.000000  10800.000000  10800.000000
+mean   215212.615656     10.294463     26.401945     -8.289666     -3.795268      2.271170
+std      7558.491460     10.094939      1.249451      0.260112      0.455358      0.629322
+min    194197.166766      0.650000     21.690000     -9.900000     -6.480000     -1.690000
+25%    211606.381991      2.530000     26.080000     -8.500000     -4.080000      1.890000
+50%    217540.028083      7.230000     26.920000     -8.280000     -3.800000      2.290000
+75%    221104.093017     14.760000     27.120000     -8.090000     -3.530000      2.720000
+max    227298.706548     38.680000     27.750000     -6.420000      0.210000      4.130000
+Kurtosis - Continous Columns
+bvp     0.068979
+bpm     1.091844
+temp    3.545607
+x       1.061342
+y       2.589687
+z       1.211121
+Skew - Continous Columns
+bvp    -0.996666
+bpm     1.332301
+temp   -2.016187
+x      -0.057974
+y       0.401831
+z      -0.546342
+Number Nan - Categorical Columns
+pump_on      0
+vacuum_on    0
+Descriptive Stats - Categorical Columns
+       pump_on vacuum_on
+count    10800     10800
+unique       2         2
+top        off       off
+freq     10472     10607
+Pump Value Counts
+off    10472
+on       328
+Vacuum Value Counts
+off    10607
+on       193
+Percentage of Time Pump On:
+3.037037037037038
+Percentage of Time Pump Off:
+96.96296296296296
+Percentage of Time Vacuum On:
+1.787037037037038
+Percentage of Time Vacuum Off:
+98.21296296296296
+Number of Pump On Events:
+10
+Number of Vacuum on Events
+13
